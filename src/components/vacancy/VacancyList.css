@@ -1,0 +1,21 @@
+.vacancy-element {
+    border: 2px solid black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 30px;
+}
+
+.vacancy-element h2 {
+    margin: 2px;
+}
+
+.vacancy-element h3 {
+    margin: 2px;
+}
+
+.vacancy-element .city {
+    margin-bottom: 5px;
+}

@@ -1,0 +1,29 @@
+.vakan-page {
+    border: thin solid black;
+    border-radius: 10px;
+    margin: 10px;
+    padding: 10px;
+    margin-left: 50px;
+    margin-right: 50px;
+    padding-left: 30px;
+    background-color: rgb(249, 249, 249);
+}
+
+.vakan-page h1 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vakan-page h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vakan-page .work {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.vakan-page .otclick {
+    margin-top: 10px;
+}
