@@ -1,13 +1,16 @@
-import './MyButton.css'
+import '../../styles/components/UI/MyButton.css'
 
 interface MyButtonProps {
     children: string
-    color?: 'otclick'
+    color?: 'otclick' | 'rega'
+    onClick?: () => void
 }
 
-function MyButton (props: MyButtonProps) {
+function MyButton(props: MyButtonProps) {
     return (
-        <button className={'my-button ' + (props.color || '')}>{props.children}</button>
+        <button className={'my-button ' + (props.color || '')} 
+        children={props.children} 
+        onClick={props.onClick}></button>
     )
 }
 
