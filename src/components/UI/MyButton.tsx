@@ -1,9 +1,10 @@
-import '../../styles/components/UI/MyButton.css'
+import '../../styles/components/UI/MyButton.css';
+import { MouseEvent } from "react";
 
 interface MyButtonProps {
     children: string
-    color?: 'otclick' | 'rega'
-    onClick?: () => void
+    color?: 'green' | 'blue' | 'red'
+    onClick?: (event: MouseEvent<HTMLButtonElement>) => void
 }
 
 function MyButton(props: MyButtonProps) {

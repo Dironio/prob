@@ -11,23 +11,31 @@
   transition: all .2s;
 }
 
-.my-button.rega {
-  background-color: rgb(11, 11, 206);
+.my-button.blue {
+  background-color: rgb(5, 5, 236);
 }
 
-.my-button.rega:hover {
-  background-color: rgb(6, 6, 137);
+.my-button.blue:hover {
+  background-color: rgb(6, 6, 163);
 }
 
-.my-button.otclick {
-  background-color: rgb(43, 160, 43);
+.my-button.red {
+  background-color: rgb(210, 2, 2);
+}
+
+.my-button.red:hover {
+  background-color: rgb(161, 0, 0);
+}
+
+.my-button.green {
+  background-color: rgb(248, 241, 39);
 
 }
 
-.my-button.otclick:hover {
-  background-color: rgb(33, 120, 33);
+.my-button.green:hover {
+  background-color: rgb(211, 205, 34);
 }
 
 .my-button:hover {
-  background-color: rgb(214, 118, 0);
+  background-color: rgb(233, 186, 0);
 }

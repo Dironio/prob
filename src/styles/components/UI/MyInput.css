@@ -1,9 +1,18 @@
 .my-input {
-  width: 90%;
+  width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
   box-sizing: border-box;
   outline: none;
   border-radius: 5px;
   border: 1px solid black;
+}
+
+.my-input:hover{
+  border: 1px solid rgb(141, 141, 141);
+  transition: all .2s;
+}
+
+.my-input.middle {
+  width: 50%;
 }

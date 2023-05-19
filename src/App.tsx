@@ -6,15 +6,15 @@ import MyInput from './components/UI/MyInput';
 import MyButton from './components/UI/MyButton';
 import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
+import NavBar from './components/navigation/NavBar';
 
 function App() {
   return (
     <div>
-      <MyInput type='text' />
-      <MyButton>Искать cum</MyButton>
+      <NavBar/>
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/vakansia' element={<VakanPage />} />
+        <Route path='/vakansia/:id' element={<VakanPage />} />
         <Route path='/auth' element={<AuthPage />} />
         <Route path='/profile' element={<ProfilePage />} />
       </Routes>

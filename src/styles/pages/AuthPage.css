@@ -3,3 +3,14 @@
     align-items: center;
     justify-content: center;
 }
+
+.auth-page .auth {
+    min-width: 50%;
+}
+
+.auth-page .auth-button {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+

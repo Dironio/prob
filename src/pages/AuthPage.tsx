@@ -20,12 +20,15 @@ function AuthPage() {
                     <MyInput type='email' placeholder='Email'></MyInput>
                     <MyInput type='password' placeholder='Password'></MyInput>
                 </div>
-                <div>
-                    <MyButton color='otclick'
-                        onClick={() => setNeZareg(prev => !prev)}
-                    >{zareg ? 'У меня нет аккаунта' : 'У меня есть аккаунт'}</MyButton>
-                    <MyButton color='rega'>Registration</MyButton>
-                    {zareg + ''}
+                <div className='auth-button'>
+                    <div>
+                        <MyButton color='green'
+                            onClick={() => setNeZareg(prev => !prev)}
+                        >{zareg ? 'У меня нет аккаунта' : 'У меня есть аккаунт'}</MyButton>
+                    </div>
+                    <div>
+                        <MyButton color='blue'>Зарегистрироваться</MyButton>
+                    </div>
                 </div>
             </div>
         </div>
