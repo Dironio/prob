@@ -1,0 +1,24 @@
+{
+       "compilerOptions": {
+        "baseUrl": ".",
+        "module": "CommonJS",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "outDir": "./dist/",   
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "target": "es2016",
+        "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
+        "skipLibCheck": true
+    },
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules",
+        "**/*.spec.ts"
+    ]
+}
