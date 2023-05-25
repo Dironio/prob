@@ -12,7 +12,7 @@ function AuthPage() {
             <div className='auth'>
                 <div>
                     <div>
-                        {zareg ? <h1>Login</h1> : <h1>Registration</h1>}
+                        {zareg ? <h1>Вход</h1> : <h1>Регистрация</h1>}
                     </div>
                 </div>
                 <div>
