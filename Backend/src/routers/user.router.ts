@@ -3,8 +3,11 @@ import usersController from "../controllers/user.controller";
 
 const userRouter : Router = Router()
 
-userRouter.post('/users', usersController.create)
-userRouter.get('/users', usersController.getAll)
+userRouter.post('/', usersController.create)
+userRouter.get('/', usersController.getAll)
+userRouter.get('/:id', usersController.getOne)
+userRouter.put('/', usersController.update)
+userRouter.delete('/:id', usersController.delete)
 
 
 

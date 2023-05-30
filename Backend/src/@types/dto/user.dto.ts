@@ -8,3 +8,16 @@ export interface CreateUserDto {
     img?: string
     role_id?: number
 }
+
+
+
+export interface UpdatedUserDto {
+    id: number
+    first_name?: string
+    last_name?: string
+    email?: string
+    password?: string
+    city?: string
+    gender?: string
+    img?: string
+}
