@@ -16,16 +16,25 @@ class VacancyDal {
 
     async getAll () {
       const allVacancies = await pool.query(
-        `SELECT * FROM vacancies`
-      )
-      return allVacancies.rows
-    }
+        `SELECT vacancies.*, busyness.name as busyness, experience.name as experience
+        FROM vacancies
+        join busyness on busyness.id = vacancies.busyness_id
+        join experience on experience.id = vacancies.experience_id
+        `
+        )
+        return allVacancies.rows
+      }
 
     async getOne (vacancyId: number) {
       // const {insertString, insertValues} = sqlGenerator.getInsertString(createUserDao)
+      
       const oneVacancy = await pool.query(
-        `SELECT * FROM vacancies
-        where id=$1`,[vacancyId]
+        `SELECT vacancies.*, busyness.name as busyness, experience.name as experience 
+        FROM vacancies
+        join busyness on busyness.id = vacancies.busyness_id
+        join experience on experience.id = vacancies.experience_id
+        
+        where vacancies.id=$1`,[vacancyId]
       )
       return oneVacancy.rows[0]
     }

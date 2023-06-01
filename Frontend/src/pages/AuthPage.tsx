@@ -16,9 +16,9 @@ function AuthPage() {
                     </div>
                 </div>
                 <div>
-                    {zareg ? '' : <MyInput type='text' placeholder='Name'></MyInput>}
+                    {zareg ? '' : <MyInput type='text' placeholder='Имя'></MyInput>}
                     <MyInput type='email' placeholder='Email'></MyInput>
-                    <MyInput type='password' placeholder='Password'></MyInput>
+                    <MyInput type='password' placeholder='Пароль'></MyInput>
                 </div>
                 <div className='auth-button'>
                     <div>

@@ -7,6 +7,7 @@ class VacancyController {
             const vacancy = await vacancyService.create(req.body)
             return res.status(201).json(vacancy)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -16,6 +17,7 @@ class VacancyController {
             const vacancies = await vacancyService.getAll()
             return res.status(200).json(vacancies)
         }catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -25,6 +27,7 @@ class VacancyController {
             const vacancy = await vacancyService.getOne(Number(req.params.id))
             return res.status(200).json(vacancy)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -34,6 +37,7 @@ class VacancyController {
             const updatedVacancy = await vacancyService.update(req.body)
             return res.status(200).json(updatedVacancy)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e.message)
         }
     }
@@ -43,6 +47,7 @@ class VacancyController {
             const deletedVacancy = await vacancyService.delete(Number(req.params.id))
             return res.status(200).json(deletedVacancy)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -62,6 +67,7 @@ class VacancyController {
             const responses = await vacancyService.getResponse()
             return res.status(200).json(responses) 
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
