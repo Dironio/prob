@@ -1,27 +1,28 @@
+import { useEffect, useState } from 'react';
 import VacancyList from '../components/vacancy/VacancyList';
 import '../styles/pages/MainPage.css'
+import axios from 'axios';
 
 function MainPage() {
-  const vacancyarray = [
-    {
-      title: "Название вакансии 1",
-      salary: 30000,
-      company: "Название компании",
-      city: "Город"
-    },
-    {
-      title: "Название вакансии 2",
-      salary: 30000,
-      company: "Название компании",
-      city: "Город"
-    },
-    {
-      title: "Название вакансии 3",
-      salary: 30000,
-      company: "Название компании",
-      city: "Город"
-    }
-  ]
+  const [vacancyState, setVacancyState] = useState();
+  useEffect(()=> {
+    const url = 'http://localhost:5001/api/vacancies'
+    axios.get(url).then( (resp) => {
+      const allResponses = resp.data
+      console.log(resp.data)
+      setVacancyState(allResponses)
+    })
+    
+  }, [setVacancyState])
+
+  
+//   axios.get(apiUrl).then((resp) => {
+//     const allPersons = resp.data;
+//     setAppState(allPersons);
+//   });
+// }, [setAppState]);
+
+// const response = await axios.post<IProduct>('https://fakestoreapi.com/products', productData)
 
   return (
     <div>
@@ -33,7 +34,8 @@ function MainPage() {
         <h2>Доступные вакансии</h2>
       </div>
       <div>
-        <VacancyList vacancyarr={vacancyarray} />
+        
+        { vacancyState ?  <VacancyList vacancyarr={vacancyState}/> : <p>Loading</p> }
       </div>
       <div className='info'>
         <h1>Автоматизированная система подбора персонала организации</h1>

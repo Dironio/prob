@@ -1,5 +1,5 @@
+import { CreateVacancyDto, ResponsesVacancyDto, UpdatedVacancyDto } from "../@types/dto/vacancy.dto";
 import vacancyDal from "../dal/vacancy.dal";
-import { CreateVacancyDto} from "../dto/vacancy.dto";
 
 class VacancyService {
     async create (createVacancyDto: CreateVacancyDto) {
@@ -8,6 +8,26 @@ class VacancyService {
 
     async getAll () {
         return await vacancyDal.getAll()
+    }
+
+    async getOne (vacancyId: number) {
+        return await vacancyDal.getOne(vacancyId)
+    }
+
+    async update (updatedVacancyDto: UpdatedVacancyDto) {
+        return await vacancyDal.update(updatedVacancyDto)
+    }
+
+    async delete (vacancyId: number) {
+        return await vacancyDal.delete(vacancyId)
+    }
+
+    async response (responsesVacancyDto: ResponsesVacancyDto) {
+        return await vacancyDal.response(responsesVacancyDto)
+    }
+
+    async getResponse () {
+        return await vacancyDal.getResponse()
     }
 }
 

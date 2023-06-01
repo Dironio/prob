@@ -1,4 +1,4 @@
-export interface CreateVacancyDao {
+export interface CreateVacancyDto {
     title: string
     salary: number
     company: string
@@ -6,9 +6,9 @@ export interface CreateVacancyDao {
     description?: string
     busyness_id?: number
     experience_id?: number
-  }
+}
 
-  export interface UpdatedVacancyDao {
+export interface UpdatedVacancyDto {
     id: number
     title?: string
     salary?: number
@@ -17,9 +17,9 @@ export interface CreateVacancyDao {
     description?: string
     busyness_id?: number
     experience_id?: number
-  }
+}
 
-  export interface ResponsesVacancyDao {
-    vacancies_id: number 
+export interface ResponsesVacancyDto {
+    vacancies_id: number
     users_id: number
-  }
+}
