@@ -7,15 +7,17 @@ class UsersController {
             const user = await userService.create(req.body)
             return res.status(201).json(user)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
 
     async getAll (req: Request, res: Response) {
         try {
-            const users = await userService.getAll()
+            const users = await userService.getAll(req.query)
             return res.status(200).json(users)
         }catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -25,6 +27,7 @@ class UsersController {
             const user = await userService.getOne(Number(req.params.id))
             return res.status(200).json(user)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }
@@ -34,6 +37,7 @@ class UsersController {
             const updatedUser = await userService.update(req.body)
             return res.status(200).json(updatedUser)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e.message)
         }
     }
@@ -43,6 +47,7 @@ class UsersController {
             const deletedUser = await userService.delete(Number(req.params.id))
             return res.status(200).json(deletedUser)
         } catch (e) {
+            console.log(e)
             res.status(500).json(e)
         }
     }

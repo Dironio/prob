@@ -1,5 +1,5 @@
 import { UpdatedUserDto } from "src/@types/dto/user.dto";
-import { CreateUserDao } from "../../src/@types/dao/user.dao";
+import { CreateUserDao, FindUserDao } from "../../src/@types/dao/user.dao";
 import pool from "../Pool";
 import sqlGenerator from "../dal/sqlGenerator";
 
@@ -15,18 +15,33 @@ class UserDal {
         return sqlGenerator.camelcaseKeys(result.rows)[0]
     }
 
-    async getAll () {
+    async getAll (findUserDao: FindUserDao) {
+      const {conditionString, conditionValues} = sqlGenerator.getConditionString(findUserDao)
       const allUsers = await pool.query(
-        `SELECT * FROM users`
-      )
-      return allUsers.rows
+        `SELECT  users.*, roles.name as role
+        FROM users
+        JOIN roles on roles.id = users.role_id
+        ${conditionString}`
+      , conditionValues)
+      return sqlGenerator.camelcaseKeys(allUsers.rows)          
     }
 
     async getOne (userId: number) {
-      // const {insertString, insertValues} = sqlGenerator.getInsertString(createUserDao)
+      const {conditionString, conditionValues} = sqlGenerator.getConditionString({'users.id':userId})
+     
+      console.log( 
+        `SELECT users.*, roles.name as role 
+      FROM users
+      JOIN roles on roles.id = users.role_id
+      ${conditionString}
+      `,conditionValues)
+
       const oneUser = await pool.query(
-        `SELECT * FROM users
-        where id=$1`,[userId]
+        `SELECT users.*, roles.name as role 
+        FROM users
+        JOIN roles on roles.id = users.role_id
+        ${conditionString}
+        `, conditionValues
       )
       return oneUser.rows[0]
     }

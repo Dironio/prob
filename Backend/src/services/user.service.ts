@@ -1,15 +1,16 @@
 import pool from "src/Pool";
 import userDal from "../dal/user.dal";
 import { CreateUserDto} from "../dto/user.dto";
-import { UpdatedUserDto } from "src/@types/dto/user.dto";
+import { UpdatedUserDto } from "../@types/dto/user.dto";
+import { FindUserDao } from "../@types/dao/user.dao";
 
 class UserService {
     async create (createUserDto: CreateUserDto) {
         return await userDal.create(createUserDto)
     }
 
-    async getAll () {
-        return await userDal.getAll()
+    async getAll (findUserDao: FindUserDao) {
+        return await userDal.getAll(findUserDao)
     }
 
     async getOne (userId: number) {
