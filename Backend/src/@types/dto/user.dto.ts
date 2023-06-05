@@ -21,3 +21,8 @@ export interface UpdatedUserDto {
     gender?: string
     img?: string
 }
+
+export interface LoginUserDto {
+    email: string
+    password: string
+}
