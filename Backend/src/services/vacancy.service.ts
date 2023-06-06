@@ -1,3 +1,4 @@
+import { FindVacancyDao } from "src/@types/dao/vacancy.dao";
 import { CreateVacancyDto, ResponsesVacancyDto, UpdatedVacancyDto } from "../@types/dto/vacancy.dto";
 import vacancyDal from "../dal/vacancy.dal";
 
@@ -6,8 +7,8 @@ class VacancyService {
         return await vacancyDal.create(createVacancyDto)
     }
 
-    async getAll () {
-        return await vacancyDal.getAll()
+    async getAll (findVacancyDao: FindVacancyDao) {
+        return await vacancyDal.getAll(findVacancyDao)
     }
 
     async getOne (vacancyId: number) {
@@ -26,8 +27,8 @@ class VacancyService {
         return await vacancyDal.response(responsesVacancyDto)
     }
 
-    async getResponse () {
-        return await vacancyDal.getResponse()
+    async getResponse (userId: number) {
+        return await vacancyDal.getResponse(userId)
     }
 }
 

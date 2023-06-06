@@ -13,7 +13,6 @@ function MainPage() {
       console.log(resp.data)
       setVacancyState(allResponses)
     })
-
   }, [setVacancyState])
   
   return (

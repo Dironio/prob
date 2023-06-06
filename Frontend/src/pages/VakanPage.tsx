@@ -4,10 +4,15 @@ import '../styles/pages/VakanPage.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { User } from '../@types/user';
 
-function VakanPage() {
-    const [vacancyState, setVacancyState] = useState();
-    let { id } = useParams();
+interface UserProps {
+    user: User | null
+}
+
+function VakanPage(props: UserProps) {
+    const [vacancyState, setVacancyState] = useState()
+    let { id } = useParams()
     console.log(id)
     useEffect(() => {
         const url = `http://localhost:5001/api/vacancies/${id}`
@@ -20,7 +25,7 @@ function VakanPage() {
 
     return (
         <div className="vakan-page">
-            {vacancyState ? <VacancyProb vacancy={vacancyState} /> : <p>Загрузка</p>}
+            {vacancyState ? <VacancyProb vacancy={vacancyState} user={props.user} /> : <p>Загрузка</p>}
         </div>
     )
 }

@@ -23,3 +23,14 @@ export interface CreateVacancyDao {
     vacancies_id: number 
     users_id: number
   }
+
+  export interface FindVacancyDao {
+    id?: number
+    title?: string
+    salary?: number
+    company?: string
+    city?: string
+    description?: string
+    busyness_id?: number
+    experience_id?: number
+  }

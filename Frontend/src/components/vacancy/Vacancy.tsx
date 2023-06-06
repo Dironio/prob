@@ -4,12 +4,21 @@ import { Vacancy } from './VacancyList';
 import { VacancyListProps } from './VacancyList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { User } from '../../@types/user';
 
 interface VacancyProbProps {
     vacancy: Vacancy
+    user: User | null
 }
 
 function VacancyProb(props: VacancyProbProps) {
+
+    async function responses() {
+        const responses = await axios.post('http://localhost:5001/api/vacancies/responses',
+            { userId: props.user?.id, vacancyId: props.vacancy.id })
+        console.log(responses.data)
+    }
+
     return (
 
         <div>
@@ -31,7 +40,11 @@ function VacancyProb(props: VacancyProbProps) {
             </div>
             <div>
                 <p>{props.vacancy.description}</p>
-                <div className='otclick'><MyButton>Откликнуться</MyButton></div>
+                <div className='otclick'>
+                    <MyButton
+                        onClick={responses}
+                    >Откликнуться</MyButton>
+                </div>
             </div>
         </div>
 

@@ -2,14 +2,13 @@ import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import VakanPage from './pages/VakanPage';
 import MainPage from './pages/MainPage';
-import MyInput from './components/UI/MyInput';
-import MyButton from './components/UI/MyButton';
 import AuthPage from './pages/AuthPage';
 import ProfilePage from './pages/ProfilePage';
 import NavBar from './components/navigation/NavBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreatePage from './pages/CreatePage';
+import EditPage from './pages/EditPage';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -27,10 +26,11 @@ function App() {
       <NavBar user={user}/>
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/vakansia/:id' element={<VakanPage />} />
+        <Route path='/vakansia/:id' element={<VakanPage user={user}/>} />
         <Route path='/auth' element={<AuthPage />} />
         <Route path='/profile' element={<ProfilePage user={user}/>} />
         <Route path='/create' element={<CreatePage />} />
+        <Route path='/edit' element={<EditPage />} />
       </Routes>
     </div>
   );

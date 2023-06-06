@@ -1,4 +1,4 @@
-import { CreateVacancyDao, ResponsesVacancyDao, UpdatedVacancyDao } from "../../src/@types/dao/vacancy.dao";
+import { CreateVacancyDao, FindVacancyDao, ResponsesVacancyDao, UpdatedVacancyDao } from "../../src/@types/dao/vacancy.dao";
 import pool from "../Pool";
 import sqlGenerator from "../dal/sqlGenerator";
 
@@ -14,27 +14,29 @@ class VacancyDal {
         return sqlGenerator.camelcaseKeys(result.rows)[0]
     }
 
-    async getAll () {
+    async getAll (findVacancyDao: FindVacancyDao) {
+      const {conditionString, conditionValues} = sqlGenerator.getConditionString(findVacancyDao)
       const allVacancies = await pool.query(
         `SELECT vacancies.*, busyness.name as busyness, experience.name as experience
         FROM vacancies
         join busyness on busyness.id = vacancies.busyness_id
         join experience on experience.id = vacancies.experience_id
-        `
-        )
-        return allVacancies.rows
+        ${conditionString}
+        `,
+        conditionValues)
+        return sqlGenerator.camelcaseKeys(allVacancies.rows)
       }
 
     async getOne (vacancyId: number) {
-      // const {insertString, insertValues} = sqlGenerator.getInsertString(createUserDao)
+      const {conditionString, conditionValues} = sqlGenerator.getConditionString({'vacancies.id':vacancyId})
       
       const oneVacancy = await pool.query(
         `SELECT vacancies.*, busyness.name as busyness, experience.name as experience 
         FROM vacancies
         join busyness on busyness.id = vacancies.busyness_id
         join experience on experience.id = vacancies.experience_id
-        
-        where vacancies.id=$1`,[vacancyId]
+        ${conditionString}
+        `, conditionValues
       )
       return oneVacancy.rows[0]
     }
@@ -80,16 +82,16 @@ class VacancyDal {
       return sqlGenerator.camelcaseKeys(response.rows)[0]
     }
 
-    async getResponse () {
+    async getResponse (userId: number) {
       const responses = await pool.query (
         `
-        SELECT * FROM responses
-        JOIN users ON users.id = responses.users_id
-        JOIN vacancies ON vacancies.id = responses.vacancies_id
-
-        `
+        SELECT distinct vacancies.* FROM responses
+        JOIN users ON users.id = responses.user_id
+        JOIN vacancies ON vacancies.id = responses.vacancy_id
+        where users.id = $1
+        `, [userId]
       )
-      return responses.rows[0]
+      return sqlGenerator.camelcaseKeys(responses.rows)
     }
 }
 

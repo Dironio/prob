@@ -8,5 +8,5 @@ export interface User {
     gender: string
     img: string
     role: string
-    role_id: number
+    roleId: number
 }

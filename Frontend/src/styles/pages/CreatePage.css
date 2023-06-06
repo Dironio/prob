@@ -10,3 +10,59 @@
     text-align: center;
     align-items: center;
 }
+
+.create-page textarea {
+    width: 100%;
+    padding: 5px;
+    border-radius: 5px;
+    border: 1px solid #000000;
+    font-size: 14px;
+    resize: vertical; 
+    box-sizing: border-box;
+
+    overflow: hidden;
+  transition: height 0.1s;
+  }
+
+  .create-page textarea:hover {
+    border-color: rgb(141, 141, 141);
+    transition: all .2s; 
+}
+.create-page .busyness {
+    width: 100%;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  
+  .create-page .busyness .busyness-style {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  padding: 12px;
+  font-size: 16px;
+  
+  }
+
+  .create-page .busyness select:hover {
+    border-color: rgb(141, 141, 141);
+    transition: all .2s;
+  }
+
+  .create-page .experience {
+    width: 100%;
+    margin-bottom: 10px;
+    outline: none;
+  }
+  
+  .create-page .experience .experience-style {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid #000000;
+  padding: 12px;
+  font-size: 16px;
+  }
+
+  .create-page .experience select:hover {
+    border-color: rgb(141, 141, 141);
+    transition: all .2s;
+  }

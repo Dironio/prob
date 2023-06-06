@@ -20,6 +20,7 @@ export interface VacancyListProps {
 }
 
 function VacancyList(props: VacancyListProps) {
+    
     // let { d } = useParams();
     const VacancyArr: JSX.Element[] = props.vacancyarr.map((vacancy) => (
         <div className="vacancy-element" key={vacancy.id}>

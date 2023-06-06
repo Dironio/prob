@@ -1,4 +1,4 @@
-import { UpdatedUserDto } from "src/@types/dto/user.dto";
+import { UpdatedUserDto } from "../@types/dto/user.dto";
 import { CreateUserDao, FindUserDao } from "../../src/@types/dao/user.dao";
 import pool from "../Pool";
 import sqlGenerator from "../dal/sqlGenerator";
@@ -43,7 +43,7 @@ class UserDal {
         ${conditionString}
         `, conditionValues
       )
-      return oneUser.rows[0]
+      return sqlGenerator.camelcaseKeys(oneUser.rows[0])
     }
 
     async update (updatedUserDto: UpdatedUserDto) {
