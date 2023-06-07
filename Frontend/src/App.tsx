@@ -14,23 +14,23 @@ function App() {
   const [user, setUser] = useState(null)
   useEffect(() => {
     const url = 'http://localhost:5001/api/auth/current'
-    axios.get(url, {withCredentials: true}).then((resp) => {
+    axios.get(url, { withCredentials: true }).then((resp) => {
       const allResponses = resp.data
       console.log(resp.data)
       setUser(allResponses)
     }).catch(error => console.log(error))
   }, [setUser])
-  
+
   return (
     <div>
-      <NavBar user={user}/>
+      <NavBar user={user} />
       <Routes>
         <Route path='/' element={<MainPage />} />
-        <Route path='/vakansia/:id' element={<VakanPage user={user}/>} />
+        <Route path='/vakansia/:id' element={<VakanPage user={user} />} />
         <Route path='/auth' element={<AuthPage />} />
-        <Route path='/profile' element={<ProfilePage user={user}/>} />
-        <Route path='/create' element={<CreatePage />} />
-        <Route path='/edit' element={<EditPage />} />
+        <Route path='/profile' element={<ProfilePage user={user} />} />
+        <Route path='/create' element={<CreatePage user={user} />} />
+        <Route path='/edit' element={<EditPage user={user} />} />
       </Routes>
     </div>
   );

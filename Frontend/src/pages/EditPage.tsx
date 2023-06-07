@@ -1,32 +1,69 @@
+import axios from 'axios';
 import MyButton from '../components/UI/MyButton';
 import MyInput from '../components/UI/MyInput'
 import '../styles/pages/EditPage.css';
+import { User } from '../@types/user';
+import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function EditPage() {
+interface EditPageProps {
+    user: User | null
+}
+
+function EditPage(props: EditPageProps) {
+
+    const [firstName, setFirstName] = useState(props.user?.firstName)
+    const [lastName, setLastName] = useState(props.user?.lastName)
+    const [city, setCity] = useState(props.user?.city)
+    const [gender, setGender] = useState(props.user?.gender)
+    const navigate = useNavigate()
+
+    async function update(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+        const response = await axios.put(`http://localhost:5001/api/users`,
+            { id: props.user?.id, firstName, lastName, city, gender })
+        console.log(response.data)
+        navigate('/profile')
+        navigate(0)
+        
+    }
+
     return (
         <div>
             <form className='edit-page'>
-                <div>
+                <div className='main'>
                     <h1>Редактирование профиля</h1>
                 </div>
                 <div>
-                    <label htmlFor="">Имя пользователя</label>
-                    <MyInput type='text' />
+                    <label htmlFor="firstName">Имя пользователя</label>
+                    <MyInput type='text' id='firstName'
+                        onChange={event => setFirstName(event.target.value)} 
+                        value={firstName}/>
                 </div>
                 <div>
-                    <label htmlFor="">Фамилия пользователя</label>
-                    <MyInput type='text' />
+                    <label htmlFor="lastName">Фамилия пользователя</label>
+                    <MyInput type='text' id='lastName'
+                        onChange={event => setLastName(event.target.value)} 
+                        value={lastName}/>
                 </div>
                 <div>
-                    <label htmlFor="">Город</label>
-                    <select name="" id=""></select>
+                    <label htmlFor="city">Город</label>
+                    <MyInput type='text' id='city'
+                        onChange={event => setCity(event.target.value)} 
+                        value={city}/>
                 </div>
-                <div>
-                    <label htmlFor="">Пол</label>
-                    <select name="" id=""></select>
+                <div className='gender'>
+                    <label htmlFor="gender">Пол</label>
+                    <select className='gender-style'
+                    onChange={event => setGender(event.target.value)}
+                    value={gender}>
+                        <option value="М">М</option>
+                        <option value="Ж">Ж</option>
+                    </select>
                 </div>
-                <div>
+                <div className='button'>
                     <MyButton color="green"
+                        onClick={update}
+                        type='button'
                     >Сохранить изменения</MyButton>
                 </div>
             </form>

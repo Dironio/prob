@@ -38,7 +38,7 @@ class VacancyDal {
         ${conditionString}
         `, conditionValues
       )
-      return oneVacancy.rows[0]
+      return sqlGenerator.camelcaseKeys(oneVacancy.rows[0])
     }
 
     async update (updatedVacancyDao: UpdatedVacancyDao) {
@@ -55,7 +55,7 @@ class VacancyDal {
         *
       `,[id, ...setValues]
       )
-      return updatedVacancy.rows[0]
+      return sqlGenerator.camelcaseKeys(updatedVacancy.rows[0])
     }
 
     async delete (vacancyId: number) {
@@ -67,7 +67,7 @@ class VacancyDal {
         *
         `,[vacancyId]
       )
-      return deletedVacancy.rows[0]
+      return sqlGenerator.camelcaseKeys(deletedVacancy.rows[0])
     }
 
     async response (responsesVacancyDao: ResponsesVacancyDao) {
@@ -82,14 +82,22 @@ class VacancyDal {
       return sqlGenerator.camelcaseKeys(response.rows)[0]
     }
 
-    async getResponse (userId: number) {
+    async getResponse (userId?: number, vacancyId?: number) {
+      const tableName = userId ? 'vacancies' : 'users'
+      const {conditionString, conditionValues} = sqlGenerator.getConditionString({'users.id' : userId, 'vacancies.id' : vacancyId})
+      console.log(`
+      SELECT distinct vacancies.* FROM responses
+      JOIN users ON users.id = responses.user_id
+      JOIN vacancies ON vacancies.id = responses.vacancy_id
+      ${conditionString}
+      `, conditionValues)
       const responses = await pool.query (
         `
-        SELECT distinct vacancies.* FROM responses
+        SELECT distinct ${tableName}.* FROM responses
         JOIN users ON users.id = responses.user_id
         JOIN vacancies ON vacancies.id = responses.vacancy_id
-        where users.id = $1
-        `, [userId]
+        ${conditionString}
+        `, conditionValues
       )
       return sqlGenerator.camelcaseKeys(responses.rows)
     }

@@ -2,18 +2,20 @@ import '.././styles/pages/ProfilePage.css';
 import MyButton from '../components/UI/MyButton';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import UserList from '../components/profile/ProfileList';
-import { Link, useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { User } from '../@types/user';
 import VacancyList from '../components/vacancy/VacancyList';
 
 interface ProfilePageProps {
     user: User | null
+
 }
 
 function ProfilePage(props: ProfilePageProps) {
 
-    const [vacancyState, setVacancyState] = useState();
+    const [vacancyState, setVacancyState] = useState()
+    const [myVacancy, setMyVacancy] = useState()
+
     const navigate = useNavigate()
 
     async function logout(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
@@ -34,6 +36,7 @@ function ProfilePage(props: ProfilePageProps) {
     }
 
 
+
     useEffect(() => {
         if (props.user) {
             const url = `http://localhost:5001/api/vacancies/responses?userId=${props.user?.id}`
@@ -45,6 +48,17 @@ function ProfilePage(props: ProfilePageProps) {
         }
     }, [props.user, setVacancyState])
 
+    useEffect(() => {
+        if (props.user) {
+            const authorUrl = `http://localhost:5001/api/vacancies?authorId=${props.user?.id}`
+            axios.get(authorUrl).then((resp) => {
+                const allResponses = resp.data
+                console.log(resp.data)
+                setMyVacancy(allResponses)
+            })
+        }
+    }, [props.user, setMyVacancy])
+
     return (
         <div className="profile-page">
             {
@@ -54,7 +68,7 @@ function ProfilePage(props: ProfilePageProps) {
                             <div>
                                 <div className='prof'>
                                     <img
-                                        src="https://yt3.ggpht.com/ytc/AKedOLTN_fcvtyNjtjYLojll-wJyUZ_5VassnJPIyuu2=s900-c-k-c0x00ffffff-no-rj" alt="User Avatar" />
+                                        src="http://bfoto.ru/foto/river/bfoto_ru_4763.jpg" alt="User Avatar" />
                                     <div>
                                         <div className="username">{props.user.firstName}</div>
                                         <div className="email">{props.user.email}</div>
@@ -87,9 +101,11 @@ function ProfilePage(props: ProfilePageProps) {
                                 <p>Фамилия: {props.user.lastName}</p>
                                 <p>Город: {props.user.city}</p>
                                 <p>Пол: {props.user.gender}</p>
-                                <Link to={'/edit'}>
-                                    <MyButton>Редактировать профиль</MyButton>
-                                </Link>
+                                <div className='edit'>
+                                    <Link to={'/edit'}>
+                                        <MyButton>Редактировать профиль</MyButton>
+                                    </Link>
+                                </div>
                             </div>
                         </div>
                         {props.user.roleId === 2 ?
@@ -104,7 +120,7 @@ function ProfilePage(props: ProfilePageProps) {
 
 
                             <div className="section">
-                                <h3>Мои отклики</h3>
+                                <h1>Мои отклики</h1>
                                 {
                                     vacancyState ? <VacancyList vacancyarr={vacancyState} />
                                         : <p>Откликов нет</p>
@@ -112,8 +128,12 @@ function ProfilePage(props: ProfilePageProps) {
                             </div>
                             :
                             <div className="section">
-                                <h3>Мои вакансии</h3>
-                                <p></p>
+                                <h1>Мои вакансии</h1>
+                                {
+                                    myVacancy ? <VacancyList vacancyarr={myVacancy} />
+                                        :
+                                        <p>Созданных вакансий не обнаружено</p>
+                                }
                             </div>
                         }
                     </>

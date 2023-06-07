@@ -5,6 +5,7 @@ interface MyInputProps {
     size?: 'middle'
     id?: string
     placeholder?: string
+    value?: any 
     onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void
 }
 
@@ -14,6 +15,7 @@ function MyInput(props: MyInputProps) {
             type={props.type}
             id = {props.id}
             placeholder={props.placeholder}
+            value={props.value}
             onChange={props.onChange}
         ></input>
     )

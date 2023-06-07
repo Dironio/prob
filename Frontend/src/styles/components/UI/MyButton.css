@@ -12,11 +12,11 @@
 }
 
 .my-button.blue {
-  background-color: rgb(55, 55, 255);
+  background-color: rgb(212, 105, 10);
 }
 
 .my-button.blue:hover {
-  background-color: rgb(43, 43, 198);
+  background-color: rgb(172, 85, 10);
 }
 
 .my-button.red {
@@ -33,7 +33,7 @@
 }
 
 .my-button.green:hover {
-  background-color: rgb(211, 205, 34);
+  background-color: rgb(213, 219, 51);
 }
 
 .my-button:hover {

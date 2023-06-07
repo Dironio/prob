@@ -76,6 +76,7 @@ class UserDal {
     }
 
     async delete (userId: number) {
+
       const deletedUser = await pool.query(
         `
         DELETE FROM users
@@ -84,7 +85,7 @@ class UserDal {
         *
         `,[userId]
       )
-      return deletedUser.rows[0]
+      return sqlGenerator.camelcaseKeys(deletedUser.rows[0])
     }
 }
 

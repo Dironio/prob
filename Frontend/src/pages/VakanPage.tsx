@@ -1,4 +1,3 @@
-import MyButton from '../components/UI/MyButton';
 import VacancyProb from '../components/vacancy/Vacancy';
 import '../styles/pages/VakanPage.css';
 import { useEffect, useState } from 'react';

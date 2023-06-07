@@ -38,7 +38,7 @@ class SqlGenerator {
 
   objectToString(object: any, joinSubstring: string, start: number = 1): ObjectToStringResult {
     const entries = Object.entries(object);
-    const filtredEntries = entries.filter(([key, value]) => value !== null && value !== undefined);
+    const filtredEntries = entries.filter(([key, value]) => value !== null && value !== undefined && !Number.isNaN(value));
     const filtredObject = Object.fromEntries(filtredEntries);
 
     const keys = Object.keys(filtredObject);

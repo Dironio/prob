@@ -64,7 +64,7 @@ class VacancyController {
 
     async getResponse (req: Request, res: Response) {
         try {
-            const responses = await vacancyService.getResponse(Number(req.query.userId))
+            const responses = await vacancyService.getResponse(Number(req.query.userId), Number(req.query.vacancyId))
             return res.status(200).json(responses) 
         } catch (e) {
             console.log(e)

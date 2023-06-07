@@ -3,7 +3,7 @@ import MyInput from "../components/UI/MyInput"
 import '../styles/pages/CreatePage.css';
 import { useEffect, useState } from 'react';
 import MyButton from "../components/UI/MyButton";
-import { Vacancy } from "../components/vacancy/VacancyList";
+import { User } from "../@types/user";
 
 interface Busyness {
     id: number
@@ -15,7 +15,11 @@ interface Experience {
     name: string
 }
 
-function CreatePage() {
+interface CreatePageProps {
+    user: User | null
+}
+
+function CreatePage(props: CreatePageProps) {
     const [title, setTitle] = useState('')
     const [salary, setSalary] = useState(1)
     const [company, setCompany] = useState('')
@@ -23,14 +27,15 @@ function CreatePage() {
     const [description, setDescription] = useState('')
     const [busynessId, setBusynessId] = useState(1)
     const [experienceId, setExperienceId] = useState(1)
-    
+
+
     const [busyness, setBusyness] = useState<Busyness[]>([])
     const [experience, setExperience] = useState<Experience[]>([])
 
-    async function create(event: React.MouseEvent<HTMLButtonElement, MouseEvent>)  {
+    async function create(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
         // event.preventDefault()
-        const response = await axios.post('http://localhost:5001/api/vacancies', 
-        {title, salary, company, city, description, busynessId, experienceId})
+        const response = await axios.post('http://localhost:5001/api/vacancies',
+            { title, salary, company, city, description, busynessId, experienceId, authorId: props.user?.id })
         console.log(response.data)
     }
 
@@ -43,7 +48,7 @@ function CreatePage() {
         })
     }, [setBusyness])
 
-    
+
     useEffect(() => {
         const url = `http://localhost:5001/api/experience`
         axios.get(url).then((resp) => {
@@ -70,47 +75,46 @@ function CreatePage() {
                 <div>
                     <label htmlFor="title">Название вакансии</label>
                     <MyInput type="text" id='title'
-                    onChange={event => setTitle(event.target.value)}
+                        onChange={event => setTitle(event.target.value)}
                     ></MyInput>
-                </div> 
+                </div>
                 <div>
                     <label htmlFor="salary">Заработная плата</label>
-                    <MyInput type="text" id='salary' 
-                    onChange={event => setSalary(Number(event.target.value))}/>
+                    <MyInput type="text" id='salary'
+                        onChange={event => setSalary(Number(event.target.value))} />
                 </div>
                 <div>
                     <label htmlFor="company">Компания работодатель</label>
-                    <MyInput type="text" id='company' 
-                    onChange={event => setCompany(event.target.value)}/>
+                    <MyInput type="text" id='company'
+                        onChange={event => setCompany(event.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="city">Город</label>
-                    <MyInput type="text" id='city' 
-                    onChange={event => setCity(event.target.value)}/>
+                    <MyInput type="text" id='city'
+                        onChange={event => setCity(event.target.value)} />
                 </div>
                 <div>
                     <label htmlFor="description">Описание вакансии</label>
                     <textarea id='description'
-                    onChange={event => setDescription(event.target.value)}></textarea>
-                    {/* <MyInput type="text" id='description' /> */}
+                        onChange={event => setDescription(event.target.value)}></textarea>
                 </div>
                 <div className="busyness">
                     <label htmlFor="busyness">Занятость</label>
                     <select className="busyness-style"
-                    onChange={event => setBusynessId(Number(event.target.value))}>
+                        onChange={event => setBusynessId(Number(event.target.value))}>
                         {BusynessArr}
                     </select>
                 </div>
                 <div className="experience">
                     <label htmlFor="experience">Занятость</label>
                     <select className="experience-style"
-                    onChange={event => setExperienceId(Number(event.target.value))}>
+                        onChange={event => setExperienceId(Number(event.target.value))}>
                         {ExperienceArr}
                     </select>
                 </div>
                 <div>
                     <MyButton color="green"
-                    onClick={create}
+                        onClick={create}
                     >Создать вакансию</MyButton>
                 </div>
             </form>

@@ -11,6 +11,7 @@ export interface Vacancy {
     description: string
     busyness: string
     experience: string
+    authorId: number
     busyness_id: number
     experience_id: number
 }

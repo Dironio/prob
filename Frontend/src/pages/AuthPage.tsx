@@ -14,19 +14,27 @@ function AuthPage() {
     const navigate = useNavigate()
     
     async function login (event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        console.log(email, password)
-        const response = await axios.post('http://localhost:5001/api/auth/login', {email, password}, {withCredentials: true}) 
-        console.log(response.data)
-        navigate('/profile')
-        navigate(0)
+        try {
+            event.preventDefault()
+            console.log(email, password)
+            const response = await axios.post('http://localhost:5001/api/auth/login', {email, password}, {withCredentials: true}) 
+            console.log(response.data)
+            navigate('/profile')
+            navigate(0)
+        } catch (error) {
+            alert('Введены некорректные данные')
+        }
     }
 
     async function singup(event: React.FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        console.log(name, email, password)
-        const response = await axios.post('http://localhost:5001/api/auth/signup', {firstName: name, email, password}, {withCredentials: true})
-        console.log(response.data)
+        try {
+            event.preventDefault()
+            console.log(name, email, password)
+            const response = await axios.post('http://localhost:5001/api/auth/signup', {firstName: name, email, password}, {withCredentials: true})
+            console.log(response.data)
+        } catch (error) {
+            alert('Введены некорректные данные')
+        }
     }
 
     return (

@@ -27,8 +27,8 @@ class VacancyService {
         return await vacancyDal.response(responsesVacancyDto)
     }
 
-    async getResponse (userId: number) {
-        return await vacancyDal.getResponse(userId)
+    async getResponse (userId?: number, vacancyId?: number) {
+        return await vacancyDal.getResponse(userId, vacancyId)
     }
 }
 
