@@ -4,6 +4,7 @@ import '../styles/pages/CreatePage.css';
 import { useEffect, useState } from 'react';
 import MyButton from "../components/UI/MyButton";
 import { User } from "../@types/user";
+import { useNavigate } from "react-router-dom";
 
 interface Busyness {
     id: number
@@ -20,6 +21,8 @@ interface CreatePageProps {
 }
 
 function CreatePage(props: CreatePageProps) {
+    const navigate = useNavigate()
+
     const [title, setTitle] = useState('')
     const [salary, setSalary] = useState(1)
     const [company, setCompany] = useState('')
@@ -37,6 +40,8 @@ function CreatePage(props: CreatePageProps) {
         const response = await axios.post('http://localhost:5001/api/vacancies',
             { title, salary, company, city, description, busynessId, experienceId, authorId: props.user?.id })
         console.log(response.data)
+        navigate('/profile')
+        navigate(0)
     }
 
     useEffect(() => {
@@ -112,7 +117,7 @@ function CreatePage(props: CreatePageProps) {
                         {ExperienceArr}
                     </select>
                 </div>
-                <div>
+                <div className="button-create">
                     <MyButton color="green"
                         onClick={create}
                     >Создать вакансию</MyButton>

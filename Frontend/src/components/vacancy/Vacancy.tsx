@@ -4,7 +4,7 @@ import { Vacancy } from './VacancyList';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { User } from '../../@types/user';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../../styles/pages/VacancyPage.css';
 
 interface VacancyProbProps {
@@ -59,7 +59,7 @@ function VacancyProb(props: VacancyProbProps) {
                     <div>
                         <h1>{props.vacancy.title}</h1>
                         <h4>от {props.vacancy.salary} до вычета налогов</h4>
-                        <div>
+                        <div className='description-vac'>
                             <span className='work'>Требуемый опыт работы: {props.vacancy.experience}
                                 <br /> Занятость: {props.vacancy.busyness}
                                 <br />Город: {props.vacancy.city}
@@ -67,16 +67,29 @@ function VacancyProb(props: VacancyProbProps) {
                                 <br />Описание: {props.vacancy.description}</span>
                             <div>
                                 {props.vacancy.authorId === props.user?.id ?
-                                    <div className='delete'>
+                                    <div className='delete-button'>
                                         <MyButton color='red'
                                             onClick={author}
                                         >Удалить</MyButton>
                                     </div>
                                     :
-                                    <div className='otclick'>
-                                        <MyButton
-                                            onClick={responses}
-                                        >Откликнуться</MyButton>
+                                    <div>
+                                        {
+                                            props.user?.id ?
+                                                <div className='otclick-button'>
+                                                    <Link to={'/'}>
+                                                    <MyButton
+                                                        onClick={responses}
+                                                    >Откликнуться</MyButton>
+                                                    </Link>
+                                                </div>
+                                                :
+                                                <div>
+                                                    <Link to={'/auth'}>
+                                                        <MyButton onClick={event => { }}>Откликнуться</MyButton>
+                                                    </Link>
+                                                </div>
+                                        }
                                     </div>
                                 }
                             </div>
@@ -97,7 +110,7 @@ function VacancyProb(props: VacancyProbProps) {
                         {
                             users ? UserArr
                                 :
-                                <></>
+                                <div>На данный момент откликов нет</div>
                         }
                     </div>
                 </div>

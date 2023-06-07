@@ -68,7 +68,7 @@ function ProfilePage(props: ProfilePageProps) {
                             <div>
                                 <div className='prof'>
                                     <img
-                                        src="http://bfoto.ru/foto/river/bfoto_ru_4763.jpg" alt="User Avatar" />
+                                        src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png" alt="User Avatar" />
                                     <div>
                                         <div className="username">{props.user.firstName}</div>
                                         <div className="email">{props.user.email}</div>
@@ -96,7 +96,7 @@ function ProfilePage(props: ProfilePageProps) {
                         <div className="content">
                             <h2>Личный кабинет</h2>
                             <div className="section">
-                                <h3>Мои данные</h3>
+                                <h3>Данные о пользователе</h3>
                                 <p>Имя: {props.user.firstName}</p>
                                 <p>Фамилия: {props.user.lastName}</p>
                                 <p>Город: {props.user.city}</p>
@@ -109,7 +109,7 @@ function ProfilePage(props: ProfilePageProps) {
                             </div>
                         </div>
                         {props.user.roleId === 2 ?
-                            <div>
+                            <div className='create'>
                                 <Link to={'/create'}>
                                     <MyButton color='green'>Создать вакансию</MyButton>
                                 </Link>
@@ -119,7 +119,7 @@ function ProfilePage(props: ProfilePageProps) {
                         {props.user.roleId === 1 ?
 
 
-                            <div className="section">
+                            <div className="my-otclicks">
                                 <h1>Мои отклики</h1>
                                 {
                                     vacancyState ? <VacancyList vacancyarr={vacancyState} />
@@ -127,8 +127,8 @@ function ProfilePage(props: ProfilePageProps) {
                                 }
                             </div>
                             :
-                            <div className="section">
-                                <h1>Мои вакансии</h1>
+                            <div className="my-vacancy">
+                                <h1>Созданные вакансии</h1>
                                 {
                                     myVacancy ? <VacancyList vacancyarr={myVacancy} />
                                         :
