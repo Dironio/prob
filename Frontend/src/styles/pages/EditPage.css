@@ -44,3 +44,23 @@
         text-align: center;
     align-items: center;
     }
+
+    .edit-page textarea {
+      width: 100%;
+      padding: 5px;
+      border-radius: 5px;
+      border: 1px solid #000000;
+      font-size: 14px;
+      resize: vertical; 
+      box-sizing: border-box;
+
+      min-height: 100px;
+  
+      overflow: hidden;
+    transition: height 0.1s;
+    }
+  
+    .edit-page textarea:hover {
+      border-color: rgb(141, 141, 141);
+      transition: all .2s; 
+  }

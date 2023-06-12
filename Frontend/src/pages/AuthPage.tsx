@@ -32,10 +32,13 @@ function AuthPage() {
             console.log(name, email, password)
             const response = await axios.post('http://localhost:5001/api/auth/signup', {firstName: name, email, password}, {withCredentials: true})
             console.log(response.data)
+            navigate('/profile')
+            navigate(0)
         } catch (error) {
             alert('Введены некорректные данные')
         }
     }
+    
 
     return (
         <div className='auth-page'>

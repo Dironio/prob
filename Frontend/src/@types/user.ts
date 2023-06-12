@@ -9,4 +9,5 @@ export interface User {
     img: string
     role: string
     roleId: number
+    description: string
 }

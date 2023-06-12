@@ -5,7 +5,7 @@ import axios from 'axios';
 
 function MainPage() {
 
-  const [vacancyState, setVacancyState] = useState();
+  const [vacancyState, setVacancyState] = useState([]);
   useEffect(() => {
     const url = 'http://localhost:5001/api/vacancies'
     axios.get(url).then((resp) => {
@@ -25,7 +25,7 @@ function MainPage() {
         <h2>Доступные вакансии</h2>
       </div>
       <div>
-        {vacancyState ? <VacancyList vacancyarr={vacancyState} /> : <p>Загрузка</p>}
+        {vacancyState.length ? <VacancyList vacancyarr={vacancyState} /> : <p>Вакансии загружаются или они не найдены</p>}
       </div>
       <div className='info'>
         <h1>Автоматизированная система подбора персонала организации</h1>

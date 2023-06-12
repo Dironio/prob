@@ -18,10 +18,16 @@ function VacancyProb(props: VacancyProbProps) {
     const [users, setUsers] = useState<User[]>([])
 
     const UserArr: JSX.Element[] = users.map((user) => (
-        <div key={user.id}><img src="http://bfoto.ru/foto/river/bfoto_ru_4763.jpg" alt="User Avatar" />
-            <div>
-                <div className='name'><p>{user.firstName} {user.lastName}</p></div>
-                <div className='email'><p>Почта для связи: {user.email}</p></div>
+        <div>
+            <div className='name-email'
+            key={user.id}><img src="https://cdn.icon-icons.com/icons2/1993/PNG/512/account_avatar_face_man_people_profile_user_icon_123197.png" alt="User Avatar" />
+                <div>
+                    <div className='name'><p>{user.firstName} {user.lastName}</p></div>
+                    <div className='email'><p>Почта для связи: {user.email}</p></div>
+                </div>
+            </div>
+            <div className='description'>
+                <p>Резюме: {user.description}</p>
             </div>
         </div>
     ))
@@ -43,7 +49,7 @@ function VacancyProb(props: VacancyProbProps) {
             const url = `http://localhost:5001/api/vacancies/responses?vacancyId=${props.vacancy?.id}`
             axios.get(url).then((resp) => {
                 const allResponses = resp.data
-                console.log(' аищиф ', resp.data)
+                console.log('vacancy', resp.data)
                 setUsers(allResponses)
             })
         }
@@ -68,25 +74,33 @@ function VacancyProb(props: VacancyProbProps) {
                             <div>
                                 {props.vacancy.authorId === props.user?.id ?
                                     <div className='delete-button'>
-                                        <MyButton color='red'
-                                            onClick={author}
-                                        >Удалить</MyButton>
+                                        <div >
+                                            <MyButton color='red'
+                                                onClick={author}
+                                            >Удалить</MyButton>
+                                        </div>
+                                        <div>
+                                            <Link to={`/editvac/${props.vacancy.id}`}>
+                                                <MyButton color='blue'>Редактировать</MyButton>
+                                            </Link>
+                                        </div>
                                     </div>
                                     :
                                     <div>
                                         {
                                             props.user?.id ?
                                                 <div className='otclick-button'>
-                                                    <Link to={'/'}>
-                                                    <MyButton
-                                                        onClick={responses}
-                                                    >Откликнуться</MyButton>
+                                                    <Link to={'/profile'}>
+                                                        <MyButton
+                                                            onClick={responses}
+                                                        >Откликнуться</MyButton>
                                                     </Link>
                                                 </div>
                                                 :
                                                 <div>
+                                                    <h4>Авторизируйтесь, чтобы откликнуться</h4>
                                                     <Link to={'/auth'}>
-                                                        <MyButton onClick={event => { }}>Откликнуться</MyButton>
+                                                        <MyButton onClick={event => { }}>Авторизироваться</MyButton>
                                                     </Link>
                                                 </div>
                                         }
@@ -108,7 +122,7 @@ function VacancyProb(props: VacancyProbProps) {
                     </div>
                     <div className='otclick'>
                         {
-                            users ? UserArr
+                            users.length ? UserArr
                                 :
                                 <div>На данный момент откликов нет</div>
                         }

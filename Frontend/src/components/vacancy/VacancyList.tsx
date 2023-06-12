@@ -12,8 +12,8 @@ export interface Vacancy {
     busyness: string
     experience: string
     authorId: number
-    busyness_id: number
-    experience_id: number
+    busynessId: number
+    experienceId: number
 }
 
 export interface VacancyListProps {

@@ -47,8 +47,19 @@ class UserDal {
     }
 
     async update (updatedUserDto: UpdatedUserDto) {
+      
       const { id, ...other } = updatedUserDto
       const {setString,setValues} = sqlGenerator.getSetString(other,2);
+      console.log(`
+      UPDATE
+        users
+      SET
+      ${setString}
+      WHERE
+        id = $1
+      RETURNING
+        *
+      `)
       const updatedUser = await pool.query(`
       UPDATE
         users
@@ -61,16 +72,7 @@ class UserDal {
       `,[id, ...setValues]
       )
 
-      // console.log(`
-      // UPDATE
-      //   users
-      // SET
-      // ${setString}
-      // WHERE
-      //   id = $1
-      // RETURNING
-      //   *
-      // `)
+      
 
       return updatedUser.rows[0]
     }

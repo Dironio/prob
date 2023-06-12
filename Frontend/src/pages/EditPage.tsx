@@ -16,15 +16,18 @@ function EditPage(props: EditPageProps) {
     const [lastName, setLastName] = useState(props.user?.lastName)
     const [city, setCity] = useState(props.user?.city)
     const [gender, setGender] = useState(props.user?.gender)
+    const [description, setDescription] = useState(props.user?.description)
     const navigate = useNavigate()
 
     async function update(event: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-        const response = await axios.put(`http://localhost:5001/api/users`,
-            { id: props.user?.id, firstName, lastName, city, gender })
-        console.log(response.data)
-        navigate('/profile')
-        navigate(0)
-        
+        if ( firstName || lastName || city || gender || description) {
+            const response = await axios.put(`http://localhost:5001/api/users`,
+                { id: props.user?.id, firstName, lastName, city, gender, description })
+            console.log(response.data)
+            // console.log(gender)
+            navigate('/profile')
+            navigate(0)
+        }         
     }
 
     return (
@@ -58,7 +61,14 @@ function EditPage(props: EditPageProps) {
                     value={gender}>
                         <option value="М">М</option>
                         <option value="Ж">Ж</option>
+                        <option value=''>Не указан</option>
                     </select>
+                </div>
+                <div>
+                    <label htmlFor="description">Резюме</label>
+                    <textarea id='description'
+                        onChange={event => setDescription(event.target.value)}
+                        value={description}></textarea>
                 </div>
                 <div className='button'>
                     <MyButton color="green"

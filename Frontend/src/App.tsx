@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import CreatePage from './pages/CreatePage';
 import EditPage from './pages/EditPage';
+import EditVacancy from './pages/EditVacancy';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -31,6 +32,7 @@ function App() {
         <Route path='/profile' element={<ProfilePage user={user} />} />
         <Route path='/create' element={<CreatePage user={user} />} />
         <Route path='/edit' element={<EditPage user={user} />} />
+        <Route path='/editvac/:id' element={<EditVacancy />} />
       </Routes>
     </div>
   );

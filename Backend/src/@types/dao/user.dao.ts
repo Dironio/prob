@@ -7,6 +7,7 @@ export interface CreateUserDao {
     gender?: string
     img?: string
     role_id?: number
+    description?: string
 }
 
 export interface OneUserDao {
@@ -19,6 +20,7 @@ export interface OneUserDao {
     gender?: string
     img?: string
     role_id?: number
+    description?: string
 }
 
 export interface FindUserDao {
@@ -31,4 +33,5 @@ export interface FindUserDao {
     gender?: string
     img?: string
     role_id?: number
+    description?: string
 }

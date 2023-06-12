@@ -39,6 +39,8 @@
     resize: vertical; 
     box-sizing: border-box;
 
+    min-height: 100px;
+
     overflow: hidden;
   transition: height 0.1s;
   }

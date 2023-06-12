@@ -13,8 +13,8 @@ interface ProfilePageProps {
 
 function ProfilePage(props: ProfilePageProps) {
 
-    const [vacancyState, setVacancyState] = useState()
-    const [myVacancy, setMyVacancy] = useState()
+    const [vacancyState, setVacancyState] = useState([])
+    const [myVacancy, setMyVacancy] = useState([])
 
     const navigate = useNavigate()
 
@@ -101,6 +101,7 @@ function ProfilePage(props: ProfilePageProps) {
                                 <p>Фамилия: {props.user.lastName}</p>
                                 <p>Город: {props.user.city}</p>
                                 <p>Пол: {props.user.gender}</p>
+                                <p>Резюме: {props.user.description}</p>
                                 <div className='edit'>
                                     <Link to={'/edit'}>
                                         <MyButton>Редактировать профиль</MyButton>
@@ -122,7 +123,7 @@ function ProfilePage(props: ProfilePageProps) {
                             <div className="my-otclicks">
                                 <h1>Мои отклики</h1>
                                 {
-                                    vacancyState ? <VacancyList vacancyarr={vacancyState} />
+                                   vacancyState.length ? <VacancyList vacancyarr={vacancyState} />
                                         : <p>Откликов нет</p>
                                 }
                             </div>
@@ -130,7 +131,7 @@ function ProfilePage(props: ProfilePageProps) {
                             <div className="my-vacancy">
                                 <h1>Созданные вакансии</h1>
                                 {
-                                    myVacancy ? <VacancyList vacancyarr={myVacancy} />
+                                   myVacancy.length ? <VacancyList vacancyarr={myVacancy} />
                                         :
                                         <p>Созданных вакансий не обнаружено</p>
                                 }

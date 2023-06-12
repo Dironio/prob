@@ -7,6 +7,7 @@ export interface CreateUserDto {
     gender?: string
     img?: string
     role_id?: number
+    description?: string
 }
 
 
@@ -20,6 +21,7 @@ export interface UpdatedUserDto {
     city?: string
     gender?: string
     img?: string
+    description?: string
 }
 
 export interface LoginUserDto {
