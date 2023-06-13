@@ -10,6 +10,7 @@ import axios from 'axios';
 import CreatePage from './pages/CreatePage';
 import EditPage from './pages/EditPage';
 import EditVacancy from './pages/EditVacancy';
+import StatsPage from './pages/StatsPage';
 
 function App() {
   const [user, setUser] = useState(null)
@@ -33,6 +34,7 @@ function App() {
         <Route path='/create' element={<CreatePage user={user} />} />
         <Route path='/edit' element={<EditPage user={user} />} />
         <Route path='/editvac/:id' element={<EditVacancy />} />
+        <Route path='/stats/:id' element={<StatsPage/>}/>
       </Routes>
     </div>
   );

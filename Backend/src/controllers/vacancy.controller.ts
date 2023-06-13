@@ -71,6 +71,16 @@ class VacancyController {
             res.status(500).json(e)
         }
     }
+
+    async stats (req: Request, res: Response) {
+        try {
+            const responses = await vacancyService.stats(Number(req.query.vacancyId))
+            return res.status(200).json(responses)
+        } catch (e) {
+            console.log(e)
+            res.status(500).json(e)
+        }
+    }
 }
 
 const vacancyController = new VacancyController();

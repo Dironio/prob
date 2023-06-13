@@ -5,6 +5,7 @@ const vacancyRouter : Router = Router()
 
 vacancyRouter.post('/responses', vacancyController.response)
 vacancyRouter.get('/responses', vacancyController.getResponse)
+vacancyRouter.get('/responses/stats', vacancyController.stats)
 
 vacancyRouter.post('/', vacancyController.create)
 vacancyRouter.get('/', vacancyController.getAll)

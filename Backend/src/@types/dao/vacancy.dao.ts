@@ -20,8 +20,8 @@ export interface CreateVacancyDao {
   }
 
   export interface ResponsesVacancyDao {
-    vacancies_id: number 
-    users_id: number
+    vacancyId: number 
+    userId: number
   }
 
   export interface FindVacancyDao {

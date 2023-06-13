@@ -20,6 +20,6 @@ export interface UpdatedVacancyDto {
 }
 
 export interface ResponsesVacancyDto {
-    vacancies_id: number
-    users_id: number
+    vacancyId: number
+    userId: number
 }

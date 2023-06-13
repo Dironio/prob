@@ -36,6 +36,8 @@ function VacancyProb(props: VacancyProbProps) {
         const responses = await axios.post('http://localhost:5001/api/vacancies/responses',
             { userId: props.user?.id, vacancyId: props.vacancy.id })
         console.log(responses.data)
+        navigate('/profile')
+        navigate(0)
     }
 
     async function author(event: any) {
@@ -49,7 +51,7 @@ function VacancyProb(props: VacancyProbProps) {
             const url = `http://localhost:5001/api/vacancies/responses?vacancyId=${props.vacancy?.id}`
             axios.get(url).then((resp) => {
                 const allResponses = resp.data
-                console.log('vacancy', resp.data)
+                console.log('users', resp.data)
                 setUsers(allResponses)
             })
         }
@@ -90,11 +92,11 @@ function VacancyProb(props: VacancyProbProps) {
                                         {
                                             props.user?.id ?
                                                 <div className='otclick-button'>
-                                                    <Link to={'/profile'}>
+                                                    {/* <Link to={'/profile'}> */}
                                                         <MyButton
                                                             onClick={responses}
                                                         >Откликнуться</MyButton>
-                                                    </Link>
+                                                    {/* </Link> */}
                                                 </div>
                                                 :
                                                 <div>
@@ -122,7 +124,15 @@ function VacancyProb(props: VacancyProbProps) {
                     </div>
                     <div className='otclick'>
                         {
-                            users.length ? UserArr
+                            users.length ? 
+                            <div>
+                                <div>
+                                    <Link to={`/stats/${props.vacancy.id}`}>
+                                        <MyButton color='blue'>Посмотреть статистику</MyButton>
+                                    </Link>
+                                </div>
+                                {UserArr}
+                            </div>
                                 :
                                 <div>На данный момент откликов нет</div>
                         }

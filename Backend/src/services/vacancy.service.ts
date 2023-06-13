@@ -30,6 +30,10 @@ class VacancyService {
     async getResponse (userId?: number, vacancyId?: number) {
         return await vacancyDal.getResponse(userId, vacancyId)
     }
+
+    async stats (vacancyId?:number) {
+        return await vacancyDal.stats(vacancyId)
+    }
 }
 
 const vacancyService = new VacancyService();
