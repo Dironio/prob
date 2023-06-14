@@ -126,7 +126,7 @@ function VacancyProb(props: VacancyProbProps) {
                         {
                             users.length ? 
                             <div>
-                                <div>
+                                <div style={{marginBottom : '20px'}}>
                                     <Link to={`/stats/${props.vacancy.id}`}>
                                         <MyButton color='blue'>Посмотреть статистику</MyButton>
                                     </Link>

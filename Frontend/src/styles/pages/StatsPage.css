@@ -1,0 +1,14 @@
+.stats-button {
+    /* display: flex; */
+    /* align-items: center; */
+    margin: 15px;
+    justify-content: center;
+    /* padding-left: 50px; */
+  
+}
+
+.stats-bar
+{
+    padding: 50px;
+    transition: all .2s;
+}
